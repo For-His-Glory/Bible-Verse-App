@@ -1,0 +1,170 @@
+<!DOCTYPE html> 
+<!--    + I'm using HTML
+        + Using "command + /" auto-populates the comment tags -->
+
+<html lang="en"> <!-- Language is english -->
+
+<head> <!-- The "meta" info, like title and charset [See Below] -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Borel&family=Eagle+Lake&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Poiret+One&family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+    <!-- This is copy/pasted from Google Fonts and is how I can choose a custom font -->
+
+  <meta charset="UTF-8"> 
+  <!--  + "Character Set"
+        + UTF-8 is the most universal and widely used set -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <!--  + [name="viewport"]: I'm setting the rules for the visible area of this page
+        + [content=]: Contains instructions
+        + ["width=device-width"]: Rule 1 - Make this page the same width as the device being used to view it
+        + ["initial-scale=1.0"]: Rule 2 - Start with no zoom -->
+  
+  <title>Daily Bible Verse</title> 
+  <!--  + This is what is presented on the browser tab
+        + Include keywords that assist with SEO -->
+
+        <style>
+
+        body /* This impacts the ENTIRE project, so any styling I want done will cascade onto everything below */
+            {
+            margin: 0;
+            height: 100vh;
+            background-image: url('Flower Picture.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* These parameters are associated with the "Viewport" i.e. what the user sees when they go to the website */
+            
+            text-align: center;
+            /* This centers the text within the Verse-Box */
+            }
+        
+        .Content-Wrapper 
+            {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            }
+
+        </style> <!-- This closes the "Flower background" [<style>] -->
+
+        <style> /* This is associated with the rectangle that contains the verse and the Share Button */
+        
+            #Verse-Box 
+            /*  + THIS WAS A DEBUG [Failure to retrieve a new verse upon window refresh]
+                + The reason I'm using [#Verse-Box] as opposed to the standard convention of [.Verse-Box] is because JS is specifically searching for this via [getElementById] and thus, must be recognized by JS */
+            {
+            padding: 1px 10px; 
+              /*    + [1px]: This value pads the TOP and BOTTOM of the text
+                    + [10px]: This pads the SIDES of the text */
+
+            width: fit-content; /* The "box" will only be as wide as the text within it */
+            
+            background-color: #ffffffb5; 
+                /* This alters the background of the box or container */
+
+            border-radius: 10px;
+                /* This "curves" the corners of the box */
+
+            font-family: Poiret One; 
+                /* This indicates which font to use */
+
+            font-size: clamp(1rem, 2.5vw, 2rem); 
+                /*  + This indicates the font size 
+                    + [1rem]: The MINIMUM font size 
+                    + [2.5vw]: The PREFERRED font size 
+                    + [2rem]: The MAXIMUM font size */
+    
+            font-weight: bold;
+                /* This indicates the font "weight" */
+
+            display: flex; /* This "activates" the Flexbox mode, allowing for the below parameters */
+                justify-content: center; /* TEXT horizontal */
+                align-items: center; /* TEXT vertical */
+                width: 90vw; /* [vw]: this must be used with [width], not [vh] */
+                min-height: 30vh; /* Provides text with "breathing room" and doesn't max it edge-to-edge */
+                max-height: 60vh; /* Prevents the box from filling the entire screen */
+                overflow-y: auto; /* Allows for the text to scroll vertically, worst case */
+                scroll-behavior: smooth;
+                padding: 10px;
+                border: 2px solid #000000; /* This is associated with the BOX */
+            
+            box-shadow: 0px 10px 7px rgba(0, 0, 0, 0.3);
+                /*  + [0px]: This shifts the shadow to the left [-10px] or right [10px] 
+                    + [10px]: This shifts the shadow up [-10px] or down [10px] 
+                    + [7px]: This changes the intensity of the "blur effect", with an increasing number increasing its clarity 
+                    + [rgba]: Indicates the color of the box shadow */
+
+            word-wrap: break-word;
+            }
+
+            .Share-Button /* This adds styling to the Share Button */
+            {
+            background-color: #7c7e7cdf;     
+            color: rgb(0, 0, 0);                     
+            padding: 12px 24px; /* Spacing inside button */
+            font-family: Poiret One;
+            font-size: 30px;                 
+            font-weight: bold;                
+            border: 2px solid black;                     
+            border-radius: 8px;               
+            cursor: pointer; /* Pointer cursor on hover */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+            transition: all 0.3s ease; /* Smooth hover animation */
+            }
+
+            .Share-Button:hover /* This creates an upward "Lift" effect when I hover the cursor over it */
+            {
+            background-color: #bebebe;       
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+            transform: translateY(-7px); /* "Lift" effect */
+            }
+
+            .poiret-one-regular /* This dictates the Google Font I pulled */
+            {
+            font-family: "Poiret One", sans-serif;
+            font-weight: 500;
+            }
+
+        </style> <!-- This closes the "Verse Box" and Share Button [<style>] -->
+        <!--    + [<style>]: An attribute within HTML. In this case, allows CSS styling to be conducted
+                + Technically, what is mentioned above is CSS, but is being conducted within HTML
+                + This is how to create a rectangle around your actual text
+                + I can alter the parameters of the box with the items in green
+                + [.Verse-Box]: Refers to the below [div class]. This language MUST be used.
+                + Best Practice = Keep <style> in the <head> section -->
+   
+</head> <!-- Closing of the "head" section -->
+
+<body> <!-- Beginning of the "body" section.  This is where any actual content goes -->
+
+<div class="Content-Wrapper"> 
+    <!--    + This was created so that the [<style>] parameters took effect on both the Verse Box AND the Share 
+            Button 
+            + By creating a "Content-Wrapper", it subjects any [<div>] within itself to the parameters listed in [<style>] -->
+
+    <div id="Verse-Box">
+    <!--    This <div> was originally using [class=], but once I used JS to automatically pull the verse from 
+            the Bible.org's API, I had to switch it to [id=] so that [.getElementById] would function properly -->
+    </div> <!-- This closes the [id=Verse-Box] <div> -->
+    <!--    + [<div>]: "Contains" whatever you've written, like a border or box 
+            + [class=]: Used to "name" what follows the "=" sign.  In this case, the name is "boxed-text" and is being referenced by <style> above -->     
+
+    <button class="Share-Button">Share</button> 
+    <!--    + This represents the "Share Button" 
+            + This must reside within the [<div style="text-align:center;"> </div>] for that feature to take effect 
+            + [class="Share Button"]: Gives the button an actual title the CSS/<style> can reference -->
+
+</div> <!-- This closes the [class=Content-Wrapper] <div> -->
+
+    <script src="Daily_Verse.js"></script>
+
+</body> <!-- This closes the [body] -->
+</html>
