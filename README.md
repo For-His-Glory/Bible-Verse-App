@@ -26,6 +26,7 @@ A minimalist desktop website that displays daily Bible verses against a calming,
 ## Credit
 - **Background Image:** Provided by various creators on [Unsplash](https://unsplash.com/)
 - **Bible Verse Source:** [Bible.org](https://bible.org/)
+- **Overall Mentor:** ChatGPT
 ---
 
 ## Installation
